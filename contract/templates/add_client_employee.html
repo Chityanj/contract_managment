@@ -1,0 +1,19 @@
+<!-- add_client_employee.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Client and Employee</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Add Client and Employee</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Client and Employee</button>
+        </form>
+    </div>
+</body>
+</html>

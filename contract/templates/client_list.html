@@ -1,0 +1,76 @@
+<!-- private_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Private List</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Private List</h2>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <form class="form-inline" method="get">
+                    <div class="form-group">
+                        <label for="employee">Filter by Employee:</label>
+                        <select name="employee" id="employee" class="form-control mx-sm-2">
+                            <option value="">-- All Employees --</option>
+                            {% for employee in all_employees %}
+                                <option value="{{ employee.name }}">{{ employee.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group mx-sm-2">
+                        <label for="client">Filter by Client:</label>
+                        <input type="text" name="client" id="client" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
+            </div>
+            <div class="col-sm-6 text-right">
+                <a href="{% url 'private_list_soon_to_expire' %}" class="btn btn-danger mr-2">Soon to Expire</a>
+                <a href="{% url 'add_client_employee' %}" class="btn btn-success mr-2">Add Client/Employee</a>
+                <a href="{% url 'add_employee' %}" class="btn btn-info">Add Employee</a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Client Name</th>
+                        <th>Contract Start Date</th>
+                        <th>Contract End Date</th>
+                        <th>Employee</th>
+                        <th>Service Dates</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in clients %}
+                    <tr>
+                        <td>{{ client.name }}</td>
+                        <td>{{ client.contract_start_date }}</td>
+                        <td>{{ client.contract_expiry_date }}</td>
+                        <td>
+                            {% for employee in client.employees.all %}
+                                {{ employee.name }}<br>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for service_date in client.services.all %}
+                                {{ service_date.service_date }}<hr>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a href="{% url 'add_service_date' client_id=client.id %}" class="btn btn-primary btn-sm">Add Service Date</a> <br>
+                            <a href="{% url 'delete_client' client_id=client.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
