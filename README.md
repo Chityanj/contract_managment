@@ -1,6 +1,6 @@
 # Contract Managment 
 ## Description
-This project is a Django web application that allows users to manage client contracts and employee details for a company providing elevator maintenance services.
+This project is a Django web application that allows users to manage client contracts and employee details for a company providing maintenance services.
 ![image](https://github.com/Chityanj/contract_managment/assets/20499500/36c328fc-7fbd-480e-bf69-355eb4339c19)
 ![image](https://github.com/Chityanj/contract_managment/assets/20499500/203768ed-315e-442b-a65f-df3d4d6bdf7c)
 
