@@ -47,10 +47,8 @@ def private_list_pending_payment(request):
 
 def delete_client(request, client_id):
     client = get_object_or_404(Client, pk=client_id)
-    if request.method == 'POST':
-        client.delete()
-        return redirect('private_list')
-    return render(request, 'delete_client.html', {'client': client})
+    client.delete()
+    return redirect('client_list')
 
 def private_list(request):
     today = date.today()
