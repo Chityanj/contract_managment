@@ -29,6 +29,7 @@
                 </form>
             </div>
             <div class="col-sm-6 text-right">
+                <a href="{% url 'private_list_pending_payment' %}" class="btn btn-warning ml-2">Pending Payment</a>
                 <a href="{% url 'private_list_soon_to_expire' %}" class="btn btn-danger mr-2">Soon to Expire</a>
                 <a href="{% url 'add_client_employee' %}" class="btn btn-success mr-2">Add Client/Employee</a>
                 <a href="{% url 'add_employee' %}" class="btn btn-info">Add Employee</a>
@@ -41,8 +42,10 @@
                         <th>Client Name</th>
                         <th>Contract Start Date</th>
                         <th>Contract End Date</th>
+                        <th>Amount</th>
                         <th>Employee</th>
                         <th>Service Dates</th>
+                        <th>Amounts Received</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -52,6 +55,7 @@
                         <td>{{ client.name }}</td>
                         <td>{{ client.contract_start_date }}</td>
                         <td>{{ client.contract_expiry_date }}</td>
+                        <td>{{ client.amount }}</td>
                         <td>
                             {% for employee in client.employees.all %}
                                 {{ employee.name }}<br>
@@ -63,8 +67,14 @@
                             {% endfor %}
                         </td>
                         <td>
+                            {% for amount_received in client.amounts_received.all %}
+                                {{ amount_received.received_date }} - {{ amount_received.amount }}<br>
+                            {% endfor %}
+                        </td>
+                        <td>
                             <a href="{% url 'add_service_date' client_id=client.id %}" class="btn btn-primary btn-sm">Add Service Date</a> <br>
-                            <a href="{% url 'delete_client' client_id=client.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{% url 'delete_client' client_id=client.id %}" class="btn btn-danger btn-sm">Delete</a> <br>
+                            <a href="{% url 'add_amount_received' client_id=client.id %}" class="btn btn-success btn-sm">Add Amount Received</a>
                         </td>
                     </tr>
                     {% endfor %}
