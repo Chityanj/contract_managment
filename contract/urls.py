@@ -12,4 +12,5 @@ urlpatterns = [
     path('private_list_soon_to_expire/', views.private_list_soon_to_expire, name='private_list_soon_to_expire'),
     path('delete-client/<int:client_id>/', views.delete_client, name='delete_client'),
     path('private_list_pending_payment/', views.private_list_pending_payment, name='private_list_pending_payment'),
+    path('add_amount_received/<int:client_id>/', views.add_amount_received, name='add_amount_received'),
 ]
