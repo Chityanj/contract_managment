@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ClientEmployeeForm, EmployeeForm, ServiceDateForm, AmountReceivedForm
 from .models import Client, Employee, ServiceDate , AmountReceived
 from datetime import date, timedelta
+from django.db.models import Sum
 
 def add_client_employee(request):
     if request.method == 'POST':
