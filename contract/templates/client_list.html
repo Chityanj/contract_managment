@@ -72,9 +72,10 @@
                             {% endfor %}
                         </td>
                         <td>
-                            <a href="{% url 'add_service_date' client_id=client.id %}" class="btn btn-primary btn-sm">Add Service Date</a> <br>
-                            <a href="{% url 'delete_client' client_id=client.id %}" class="btn btn-danger btn-sm">Delete</a> <br>
-                            <a href="{% url 'add_amount_received' client_id=client.id %}" class="btn btn-success btn-sm">Add Amount Received</a>
+                            <a href="{% url 'add_service_date' client_id=client.id %}" class="btn btn-primary btn-sm btn-block">Add Service Date</a> <br>
+                            <a href="{% url 'delete_client' client_id=client.id %}" class="btn btn-danger btn-sm btn-block">Delete</a> <br>
+                            <a href="{% url 'add_amount_received' client_id=client.id %}" class="btn btn-success btn-sm btn-block">Add Amount Received</a>
+                            <a href="{% url 'edit_client' client_id=client.id %}" class="btn btn-secondary btn-sm btn-block">Edit</a>
                         </td>
                     </tr>
                     {% endfor %}
