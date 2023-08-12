@@ -10,7 +10,7 @@ def add_client_employee(request):
         form = ClientEmployeeForm(request.POST)
         if form.is_valid():
             form.save()
-            form.ClientEmployeeForm()
+            form = ClientEmployeeForm()
     else:
         form = ClientEmployeeForm()
     return render(request, 'add_client_employee.html', {'form': form})
