@@ -15,6 +15,19 @@ def add_client_employee(request):
         form = ClientEmployeeForm()
     return render(request, 'add_client_employee.html', {'form': form})
 
+def edit_client(request, client_id):
+    client = get_object_or_404(Client, pk=client_id)
+
+    if request.method == 'POST':
+        form = ClientEmployeeForm(request.POST, instance=client)
+        if form.is_valid():
+            form.save()
+            return redirect('client_list')
+    else:
+        form = ClientEmployeeForm(instance=client)
+
+    return render(request, 'edit_client.html', {'form': form, 'client': client})
+
 def add_employee(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
