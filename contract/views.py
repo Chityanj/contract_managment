@@ -133,19 +133,17 @@ def employee_list(request):
     return render(request, 'employee_list.html', {'employees': employees})
 
 def add_service_date(request, client_id):
-    client = Client.objects.get(pk=client_id)
+    client = get_object_or_404(Client, id=client_id)
 
     if request.method == 'POST':
-        form = ServiceDateForm(request.POST)
+        form = ServiceDateForm(request.POST, request.FILES)
         if form.is_valid():
-            service_date = form.save()
-            client.services.add(service_date)  # Associate the service date with the client
+            service_date = form.save(commit=False)
+            service_date.save()
+            client.services.add(service_date)
             return redirect('public_list')
-
     else:
         form = ServiceDateForm()
 
-    return render(request, 'add_service_date.html', {
-        'client': client,
-        'form': form,
-    })
+    return render(request, 'add_service_date.html', {'form': form, 'client': client})
+

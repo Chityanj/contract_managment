@@ -19,9 +19,11 @@ class Client(models.Model):
 
 class ServiceDate(models.Model):
     service_date = models.DateField()
+    receipt_image = models.ImageField(upload_to='recps/', blank=True, null=True)
 
     def __str__(self):
         return str(self.service_date)
+
 
 class AmountReceived(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='amounts_received')

@@ -23,10 +23,12 @@ class EmployeeForm(forms.ModelForm):
 class ServiceDateForm(forms.ModelForm):
     class Meta:
         model = ServiceDate
-        fields = ['service_date']
+        fields = ['service_date', 'receipt_image']
         widgets = {
             'service_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'receipt_image': forms.FileInput(attrs={'class': 'form-control-file'}),
         }
+
 
 class AmountReceivedForm(forms.ModelForm):
     class Meta:

@@ -47,6 +47,9 @@
                         <td>
                             {% for service_date in client.services.all %}
                                 {{ service_date.service_date }}<br>
+                                {% if service_date.receipt_image %}
+                                    <a href="{{ service_date.receipt_image.url }}" target="_blank">Receipt</a><br>
+                                {% endif %}
                             {% endfor %}
                         </td>
                         <td>
